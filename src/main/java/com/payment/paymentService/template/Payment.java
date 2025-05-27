@@ -5,7 +5,7 @@ import com.payment.paymentService.strategy.PaymentMethod;
 import lombok.Data;
 
 @Data
-abstract class Payment implements PaymentMethod {
+public abstract class Payment implements PaymentMethod {
     private String senderId;
     private String receiverId;
     private double amount;
@@ -17,7 +17,7 @@ abstract class Payment implements PaymentMethod {
     }
     abstract void validate();
     @Override
-    void pay(Double amount){
+    void pay(double amount){
 
     };
 }
