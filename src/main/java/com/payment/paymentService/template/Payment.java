@@ -1,6 +1,5 @@
 package com.payment.paymentService.template;
 
-
 import com.payment.paymentService.strategy.PaymentMethod;
 import lombok.Data;
 
@@ -9,15 +8,17 @@ public abstract class Payment implements PaymentMethod {
     private String senderId;
     private String receiverId;
     private double amount;
+    private String uuid;
 
-    public Payment(String senderId, String receiverId, double amount) {
+    public Payment(String senderId, String receiverId, double amount,String uuid) {
         this.senderId = senderId;
         this.receiverId = receiverId;
         this.amount = amount;
+        this.uuid = uuid;
     }
-    abstract void validate();
+    public abstract void validate();
     @Override
-    void pay(double amount){
+   public void pay(double amount){
 
-    };
+    }
 }
