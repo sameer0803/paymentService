@@ -9,6 +9,10 @@ public class PaymentFactory {
 
 
     public static PaymentMethod getPayment(PaymentTypes type, double amount, String userId, String receiverId, String uuid, String data, RedisUtilityService redisService) {
+     if (type == null)
+     {
+         throw new IllegalArgumentException("type cannot be null");
+     }
         return switch (type) {
             case UPI ->
                     new UPIPayment(userId, receiverId, amount, uuid, data,redisService);
