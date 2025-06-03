@@ -1,13 +1,15 @@
 package com.payment.paymentService.proxy;
 
 import com.payment.paymentService.dto.AcknowledgeDto;
-import org.springframework.cloud.netflix.feign.FeignClient;
+
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(url = "http://localhost:8081")
+@FeignClient( name = "acknowledge-proxy", url = "http://localhost:8081")
 public interface AckProxy {
-@GetMapping("/acknowledge")
+@PostMapping("/acknowledge")
     public String acknowledge(@RequestBody AcknowledgeDto acknowledgeDto);
 
 }
