@@ -10,7 +10,11 @@ import com.payment.paymentService.strategy.PaymentMethod;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+
 
 import java.time.Duration;
 
@@ -18,26 +22,29 @@ import static java.time.LocalDateTime.now;
 
 @Service
 public class PaymentGateway {
+    private final RestTemplate restTemplate;
 
     private final AckProxy ackProxy;
     private final PaymentProcessRepo paymentProcessRepo;
     private final RedisUtilityService redisUtility;
+    private final AckClientRestTemplate   ackClientRestTemplate;
 
-    public PaymentGateway(RedisUtilityService redisUtility, PaymentProcessRepo paymentProcessRepo, AckProxy ackProxy) {
+    public PaymentGateway(RestTemplate restTemplate, RedisUtilityService redisUtility, PaymentProcessRepo paymentProcessRepo, AckProxy ackProxy, AckClientRestTemplate ackClientRestTemplate) {
+        this.restTemplate = restTemplate;
         this.redisUtility = redisUtility;
         this.paymentProcessRepo = paymentProcessRepo;
         this.ackProxy = ackProxy;
+        this.ackClientRestTemplate = ackClientRestTemplate;
     }
     @Transactional
     public void processPayment(PaymentProcessDto paymentProcessDto) throws BadRequestException {
-
         String validateUUID=redisUtility.get(paymentProcessDto.getUuid());
         if (validateUUID!=null)
         {
             throw new BadRequestException("Duplicate payment");
         }
         redisUtility.set(paymentProcessDto.getUuid(),"In progress", Duration.ofSeconds(10));
-        PaymentMethod paymentMethod = PaymentFactory.getPayment(paymentProcessDto.getType(),paymentProcessDto.getAmount(),paymentProcessDto.getUserId(),paymentProcessDto.getReceiverId(),paymentProcessDto.getUuid(),paymentProcessDto.getData(),redisUtility,ackProxy);
+        PaymentMethod paymentMethod = PaymentFactory.getPayment(paymentProcessDto.getType(),paymentProcessDto.getAmount(),paymentProcessDto.getUserId(),paymentProcessDto.getReceiverId(),paymentProcessDto.getUuid(),paymentProcessDto.getData(),redisUtility,ackProxy,ackClientRestTemplate);
 
         paymentMethod.pay(paymentProcessDto.getAmount());
         paymentProcessRepo.save( dtoToEntity( paymentProcessDto));
@@ -55,6 +62,9 @@ public class PaymentGateway {
         return paymentProcess;
 
     }
+
+
+
 
 
 }

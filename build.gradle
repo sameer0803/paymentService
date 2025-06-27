@@ -45,6 +45,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.apache.commons:commons-pool2' // for connection pooling
 	implementation("org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.kafka:spring-kafka")
+	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.3.0")
 }
 
 dependencyManagement {
