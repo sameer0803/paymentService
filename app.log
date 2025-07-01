@@ -1,0 +1,40 @@
+2025-06-04T21:10:47.315+05:30  INFO 15124 --- [paymentService] [Test worker] c.p.p.PaymentServiceApplicationTests     : Starting PaymentServiceApplicationTests using Java 17.0.12 with PID 15124 (started by HP in D:\IT-Codes\Backened\gradle_tutorial\paymentService\paymentService)
+2025-06-04T21:10:47.320+05:30  INFO 15124 --- [paymentService] [Test worker] c.p.p.PaymentServiceApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2025-06-04T21:10:49.182+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04T21:10:49.189+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2025-06-04T21:10:49.283+05:30  INFO 15124 --- [paymentService] [Test worker] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.payment.paymentService.repository.PaymentProcessRepo; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2025-06-04T21:10:49.285+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 0 JDBC repository interfaces.
+2025-06-04T21:10:49.300+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04T21:10:49.309+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-04T21:10:49.514+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 210 ms. Found 1 JPA repository interface.
+2025-06-04T21:10:49.549+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-06-04T21:10:49.558+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-06-04T21:10:49.583+05:30  INFO 15124 --- [paymentService] [Test worker] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.payment.paymentService.repository.PaymentProcessRepo; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-06-04T21:10:49.583+05:30  INFO 15124 --- [paymentService] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2025-06-04T21:10:49.877+05:30  INFO 15124 --- [paymentService] [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=09c1c134-25a3-337c-9007-9f2a0ec044ba
+2025-06-04T21:10:50.512+05:30  INFO 15124 --- [paymentService] [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-04T21:10:50.621+05:30  INFO 15124 --- [paymentService] [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
+2025-06-04T21:10:50.691+05:30  INFO 15124 --- [paymentService] [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-04T21:10:51.213+05:30  INFO 15124 --- [paymentService] [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-04T21:10:51.317+05:30  INFO 15124 --- [paymentService] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-04T21:10:51.620+05:30  INFO 15124 --- [paymentService] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e6f5842
+2025-06-04T21:10:51.620+05:30  INFO 15124 --- [paymentService] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-04T21:10:51.680+05:30  WARN 15124 --- [paymentService] [Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-04T21:10:51.684+05:30  WARN 15124 --- [paymentService] [Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-06-04T21:10:51.705+05:30  INFO 15124 --- [paymentService] [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-04T21:10:52.727+05:30  INFO 15124 --- [paymentService] [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-04T21:10:52.824+05:30  INFO 15124 --- [paymentService] [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-04T21:10:53.938+05:30  WARN 15124 --- [paymentService] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-04T21:10:55.902+05:30  INFO 15124 --- [paymentService] [Test worker] o.s.c.f.web.mvc.FunctionHandlerMapping   : FunctionCatalog: org.springframework.cloud.function.context.catalog.BeanFactoryAwareFunctionRegistry@7be29ac4
+2025-06-04T21:10:55.970+05:30  INFO 15124 --- [paymentService] [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-06-04T21:10:56.099+05:30  INFO 15124 --- [paymentService] [Test worker] c.p.p.PaymentServiceApplicationTests     : Started PaymentServiceApplicationTests in 9.467 seconds (process running for 11.284)
+2025-06-04T21:10:56.905+05:30  INFO 15124 --- [paymentService] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-04T21:10:56.922+05:30  INFO 15124 --- [paymentService] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-04T21:10:56.930+05:30  INFO 15124 --- [paymentService] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

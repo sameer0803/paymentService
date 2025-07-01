@@ -7,17 +7,25 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class PaymentController {
 
-    RestTemplate restTemplate = new RestTemplate();
 
     private final PaymentGateway paymentGateway;
 
     @PostMapping("/payment")
-    public void payment(@RequestBody PaymentProcessDto paymentProcessDto) throws BadRequestException {
-        paymentGateway.processPayment(paymentProcessDto);
+    public void payment(@RequestBody List<PaymentProcessDto>  paymentProcessDto) throws BadRequestException {
+        paymentProcessDto.forEach(processDto -> {
+            try {
+                paymentGateway.processPayment(processDto);
+            } catch (BadRequestException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
     }
 
 
