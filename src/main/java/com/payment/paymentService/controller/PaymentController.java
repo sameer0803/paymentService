@@ -17,14 +17,12 @@ public class PaymentController {
     private final PaymentGateway paymentGateway;
 
     @PostMapping("/payment")
-    public void payment(@RequestBody List<PaymentProcessDto>  paymentProcessDto) throws BadRequestException {
-        paymentProcessDto.forEach(processDto -> {
-            try {
-                paymentGateway.processPayment(processDto);
-            } catch (BadRequestException e) {
-                throw new RuntimeException(e);
-            }
-        });
+    public void payment(@RequestBody PaymentProcessDto  paymentProcessDto) throws BadRequestException {
+        try {
+            paymentGateway.processPayment(paymentProcessDto);
+        } catch (BadRequestException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
