@@ -36,6 +36,7 @@ public class AckClientRestTemplate {
 
     public String acknowledgeFallback(AcknowledgeDto acknowledgeDto,Throwable throwable)
     {
-         throw new IllegalArgumentException("Service Not available----->"+acknowledgeDto.getReceiverId());
+        // throw new IllegalArgumentException("Service Not available----->"+acknowledgeDto.getReceiverId());
+         throw new IllegalArgumentException("Service Not available----->" +throwable.getMessage());
     }
 }

@@ -23,14 +23,16 @@ import static java.time.LocalDateTime.now;
 @Service
 public class PaymentGateway {
     private final RestTemplate restTemplate;
+    private final KafkaProducerService kafkaProducerService;
 
     private final AckProxy ackProxy;
     private final PaymentProcessRepo paymentProcessRepo;
     private final RedisUtilityService redisUtility;
     private final AckClientRestTemplate   ackClientRestTemplate;
 
-    public PaymentGateway(RestTemplate restTemplate, RedisUtilityService redisUtility, PaymentProcessRepo paymentProcessRepo, AckProxy ackProxy, AckClientRestTemplate ackClientRestTemplate) {
+    public PaymentGateway(RestTemplate restTemplate, KafkaProducerService kafkaProducerService, RedisUtilityService redisUtility, PaymentProcessRepo paymentProcessRepo, AckProxy ackProxy, AckClientRestTemplate ackClientRestTemplate) {
         this.restTemplate = restTemplate;
+        this.kafkaProducerService = kafkaProducerService;
         this.redisUtility = redisUtility;
         this.paymentProcessRepo = paymentProcessRepo;
         this.ackProxy = ackProxy;
@@ -47,7 +49,8 @@ public class PaymentGateway {
         PaymentMethod paymentMethod = PaymentFactory.getPayment(paymentProcessDto.getType(),paymentProcessDto.getAmount(),paymentProcessDto.getUserId(),paymentProcessDto.getReceiverId(),paymentProcessDto.getUuid(),paymentProcessDto.getData(),redisUtility,ackProxy,ackClientRestTemplate);
 
         paymentMethod.pay(paymentProcessDto.getAmount());
-        paymentProcessRepo.save( dtoToEntity( paymentProcessDto));
+//        paymentProcessRepo.save( dtoToEntity( paymentProcessDto));
+        kafkaProducerService.sendMessage(String.valueOf( paymentProcessDto),"payment-data");
     }
 
     private PaymentProcess dtoToEntity(PaymentProcessDto paymentProcessDto) {
@@ -61,6 +64,13 @@ public class PaymentGateway {
 
         return paymentProcess;
 
+    }
+
+
+    public void save (PaymentProcessDto paymentProcessDto)
+    {
+
+        paymentProcessRepo.save( dtoToEntity( paymentProcessDto));
     }
 
 
